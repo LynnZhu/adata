@@ -56,7 +56,7 @@ def setup_package():
     try:
         from setuptools import setup
     except ImportError:
-        from distutils.core import setup
+        from setuptools import setup
 
     setup(**metadata)
 
