@@ -63,3 +63,24 @@ def setup_package():
 
 if __name__ == "__main__":
     setup_package()
+
+
+
+
+
+
+
+# pip install dist/adata-2.1.1-py3-none-any.whl
+#
+# python setup.py sdist bdist_wheel
+#
+# pip install dist/adata-2.1.1-py3-none-any.whl
+#
+# pip show adata
+#
+# pip uninstall adata
+#
+# 如果有多个版本 可以多次卸载
+
+# import adata
+# print(adata.__version__)
