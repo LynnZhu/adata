@@ -81,10 +81,14 @@ class Hot(AList):  # 参考 pylint 改完之后实际上这个 Hot 和 AList 没
         data = res.json()["data"]["stock_list"]
         data_list = []
         for d in data:
-            d["concept_tag"] = ";".join(d["tag"]["concept_tag"])
-            if "popularity_tag" in d["tag"]:
-                d["pop_tag"] = d["tag"]["popularity_tag"].replace("\n", "")
-            data_list.append(d)
+            try:
+                if "tag" in d and "concept_tag" in d["tag"]:
+                    d["concept_tag"] = ";".join(d["tag"]["concept_tag"])
+                if "popularity_tag" in d["tag"]:
+                    d["pop_tag"] = d["tag"]["popularity_tag"].replace("\n", "")
+                data_list.append(d)
+            except:
+                pass
         rename = {
             "order": "rank",
             "rise_and_fall": "change_pct",
@@ -126,6 +130,6 @@ class Hot(AList):  # 参考 pylint 改完之后实际上这个 Hot 和 AList 没
 
 if __name__ == "__main__":
     print(Hot().hot_rank_100_ths())
-    print(Hot().pop_rank_100_east())
-    print(Hot().hot_concept_20_ths(plate_type=1))
-    print(Hot().hot_concept_20_ths(plate_type=2))
+    # print(Hot().pop_rank_100_east())
+    # print(Hot().hot_concept_20_ths(plate_type=1))
+    # print(Hot().hot_concept_20_ths(plate_type=2))

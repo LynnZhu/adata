@@ -86,7 +86,10 @@ class SunRequests(object):
             ip = requests.get(url=proxy_url).text.replace('\r\n', '') \
                 .replace('\r', '').replace('\n', '').replace('\t', '')
         if is_proxy and ip:
-            proxies = {'https': f"http://{ip}", 'http': f"http://{ip}"}
+            if ip.startswith('http'):
+                proxies = {'https': f"{ip}", 'http': f"{ip}"}
+            else:
+                proxies = {'https': f"http://{ip}", 'http': f"http://{ip}"}
         return proxies
 
 
